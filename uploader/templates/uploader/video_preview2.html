@@ -1,0 +1,290 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Video Preview</title>
+</head>
+<body>
+    <h2>Video Preview</h2>
+    <video controls width="720">
+        <source src="{{ preview_video }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+
+    <form action="{% url 'save_video' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Save Locally</button>
+    </form>
+
+    <form id="publishForm" action="{% url 'publish_to_youtube' %}" method="post">
+        <button type="submit" onclick="publishToYouTube()">Publish to YouTube</button>
+    </form>
+
+    <script>
+        function publishToYouTube() {
+            fetch("{% url 'publish_to_youtube' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({
+                    title: "{{ title }}",
+                    description: "{{ description }}",
+                    thumbnail: "{{ thumbnail }}",
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.status || data.error);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Preview</title>
+</head>
+<body>
+    <h2>Video Preview</h2>
+    <video controls width="720">
+        <source src="{{ preview_video }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+
+    <form action="{% url 'save_video' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Save Locally</button>
+    </form>
+
+    <form id="publishForm" method="post">
+        <button type="button" onclick="publishToYouTube()">Publish to YouTube</button>
+    </form>
+
+    <script>
+        function publishToYouTube() {
+            fetch("{% url 'publish_to_youtube' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({
+                    title: "{{ title }}",
+                    description: "{{ description }}",
+                    thumbnail: "{{ thumbnail }}",
+                    schedule_time: "{{ schedule_time }}"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.status || data.error);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Preview</title>
+</head>
+<body>
+    <h2>Video Preview</h2>
+    <video controls width="720">
+        <source src="{{ preview_video }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+
+    <form action="{% url 'save_video' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Save Locally</button>
+    </form>
+
+    <form id="publishForm" method="post">
+        <button type="button" onclick="publishToYouTube()">Publish to YouTube</button>
+    </form>
+
+    <script>
+        function publishToYouTube() {
+            fetch("{% url 'publish_to_youtube' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}",
+                },
+                body: JSON.stringify({
+                    title: "{{ title }}",
+                    description: "{{ description }}",
+                    thumbnail: "{{ thumbnail }}",
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.status || data.error);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Preview</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        video {
+            width: 100%;
+            max-width: 720px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            background-color: #000;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: #007bff; /* Blue */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            button {
+                font-size: 16px;
+                width: 100%;
+            }
+
+            video {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Video Preview</h2>
+        
+        <video controls>
+            <source src="{{ preview_video }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="form-group">
+            <form action="{% url 'save_video' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Save Locally</button>
+            </form>
+
+            <form id="publishForm" action="{% url 'publish_to_youtube' %}" method="post">
+                <button type="submit" onclick="publishToYouTube()">Publish to YouTube</button>
+            </form>
+        </div>
+
+        <script>
+            function publishToYouTube() {
+                fetch("{% url 'publish_to_youtube' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": "{{ csrf_token }}",
+                    },
+                    body: JSON.stringify({
+                        title: "{{ title }}",
+                        description: "{{ description }}",
+                        thumbnail: "{{ thumbnail }}",
+                        schedule_time: "{{ schedule_time }}"
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.status || data.error);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        </script>
+    </div>
+</body>
+</html> -->

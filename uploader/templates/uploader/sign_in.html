@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h2>Sign In</h2>
+        <form method="post">
+            {% csrf_token %}
+            <!-- Sign-In Logic (OAuth Flow) -->
+            <button type="submit">Sign In with YouTube</button>
+        </form>
+    {% else %}
+    <h1>Unauthorised Page</h1>
+    {% endif %}
+</body>
+</html>
